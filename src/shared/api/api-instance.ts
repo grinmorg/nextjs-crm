@@ -1,7 +1,7 @@
 import axios, { AxiosError, AxiosRequestConfig } from "axios";
 
 export const apiInstance = axios.create({
-  baseURL: process.env.NODE_ENV == 'development' ? "http://localhost:4200" : 'http://nestjs-crm.onrender.com',
+  baseURL: process.env.NODE_ENV == 'development' ? "http://localhost:4200" : 'https://nestjs-crm.onrender.com',
   withCredentials: true,
   headers: {
     "Content-Type": "application/json",
