@@ -26,6 +26,7 @@ export function useSignInForm() {
       ? ["An error occurred"] // Default error message if it's a generic Error
       : signUpMutation.error || [];
 
+
   return {
     register,
     handleSubmit: handleSubmit((data) => signUpMutation.mutate(data)),

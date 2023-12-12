@@ -1,17 +1,17 @@
 openapi: 3.0.0
 paths:
-  /api:
+  /:
     get:
       operationId: AppController_getHello
       parameters: []
       responses:
-        "200":
-          description: ""
+        '200':
+          description: ''
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/HelloWorldDto"
-  /api/auth/sign-up:
+                $ref: '#/components/schemas/HelloWorldDto'
+  /auth/sign-up:
     post:
       operationId: AuthController_signUp
       parameters: []
@@ -20,13 +20,13 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/SignUpBodyDto"
+              $ref: '#/components/schemas/SignUpBodyDto'
       responses:
-        "201":
-          description: ""
+        '201':
+          description: ''
       tags:
         - Auth
-  /api/auth/sign-in:
+  /auth/sign-in:
     post:
       operationId: AuthController_signIn
       parameters: []
@@ -35,45 +35,45 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/SignInBodyDto"
+              $ref: '#/components/schemas/SignInBodyDto'
       responses:
-        "200":
-          description: ""
+        '200':
+          description: ''
       tags:
         - Auth
-  /api/auth/sign-out:
+  /auth/sign-out:
     post:
       operationId: AuthController_signOut
       parameters: []
       responses:
-        "200":
-          description: ""
+        '200':
+          description: ''
       tags:
         - Auth
-  /api/auth/session:
+  /auth/session:
     get:
       operationId: AuthController_getSessionInfo
       parameters: []
       responses:
-        "200":
-          description: ""
+        '200':
+          description: ''
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/GetSessionInfoDto"
+                $ref: '#/components/schemas/GetSessionInfoDto'
       tags:
         - Auth
-  /api/account:
+  /account:
     get:
       operationId: AccountController_getAccount
       parameters: []
       responses:
-        "200":
-          description: ""
+        '200':
+          description: ''
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/AccountDto"
+                $ref: '#/components/schemas/AccountDto'
       tags:
         - Account
     patch:
@@ -84,29 +84,29 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/PatchAccountDto"
+              $ref: '#/components/schemas/PatchAccountDto'
       responses:
-        "200":
-          description: ""
+        '200':
+          description: ''
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/AccountDto"
+                $ref: '#/components/schemas/AccountDto'
       tags:
         - Account
-  /api/blog:
+  /blog:
     get:
       operationId: BlogController_index
       parameters: []
       responses:
-        "200":
+        '200':
           description: List of posts
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/PostDto"
+                  $ref: '#/components/schemas/PostDto'
       tags:
         - Blog
     post:
@@ -117,17 +117,17 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/PostBodyDto"
+              $ref: '#/components/schemas/PostBodyDto'
       responses:
-        "200":
-          description: ""
+        '200':
+          description: ''
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/PostDto"
+                $ref: '#/components/schemas/PostDto'
       tags:
         - Blog
-  /api/blog/{id}:
+  /blog/{id}:
     get:
       operationId: BlogController_show
       parameters:
@@ -137,17 +137,40 @@ paths:
           schema:
             type: number
       responses:
-        "200":
-          description: ""
+        '200':
+          description: ''
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/PostDto"
+                $ref: '#/components/schemas/PostDto'
+      tags:
+        - Blog
+    patch:
+      operationId: BlogController_update
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: number
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostBodyDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostDto'
       tags:
         - Blog
 info:
   title: Block list
-  description: ""
+  description: ''
   version: 1.0.0
   contact: {}
 tags: []

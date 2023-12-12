@@ -66,13 +66,7 @@ type SecondParameter<T extends (...args: any) => any> = T extends (
 export const appControllerGetHello = (
   options?: SecondParameter<typeof createInstance>,
 ) => {
-  return createInstance<HelloWorldDto>(
-    {
-      url: `/api`,
-      method: "GET",
-    },
-    options,
-  );
+  return createInstance<HelloWorldDto>({ url: `/`, method: "GET" }, options);
 };
 
 export const authControllerSignUp = (
@@ -81,7 +75,7 @@ export const authControllerSignUp = (
 ) => {
   return createInstance<void>(
     {
-      url: `/api/auth/sign-up`,
+      url: `/auth/sign-up`,
       method: "POST",
       headers: { "Content-Type": "application/json" },
       data: signUpBodyDto,
@@ -96,7 +90,7 @@ export const authControllerSignIn = (
 ) => {
   return createInstance<void>(
     {
-      url: `/api/auth/sign-in`,
+      url: `/auth/sign-in`,
       method: "POST",
       headers: { "Content-Type": "application/json" },
       data: signInBodyDto,
@@ -109,10 +103,7 @@ export const authControllerSignOut = (
   options?: SecondParameter<typeof createInstance>,
 ) => {
   return createInstance<void>(
-    {
-      url: `/api/auth/sign-out`,
-      method: "POST",
-    },
+    { url: `/auth/sign-out`, method: "POST" },
     options,
   );
 };
@@ -121,10 +112,7 @@ export const authControllerGetSessionInfo = (
   options?: SecondParameter<typeof createInstance>,
 ) => {
   return createInstance<GetSessionInfoDto>(
-    {
-      url: `/api/auth/session`,
-      method: "GET",
-    },
+    { url: `/auth/session`, method: "GET" },
     options,
   );
 };
@@ -133,10 +121,7 @@ export const accountControllerGetAccount = (
   options?: SecondParameter<typeof createInstance>,
 ) => {
   return createInstance<AccountDto>(
-    {
-      url: `/api/account`,
-      method: "GET",
-    },
+    { url: `/account`, method: "GET" },
     options,
   );
 };
@@ -147,7 +132,7 @@ export const accountControllerPatchAccount = (
 ) => {
   return createInstance<AccountDto>(
     {
-      url: `/api/account`,
+      url: `/account`,
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       data: patchAccountDto,
@@ -159,13 +144,7 @@ export const accountControllerPatchAccount = (
 export const blogControllerIndex = (
   options?: SecondParameter<typeof createInstance>,
 ) => {
-  return createInstance<PostDto[]>(
-    {
-      url: `/api/blog`,
-      method: "GET",
-    },
-    options,
-  );
+  return createInstance<PostDto[]>({ url: `/blog`, method: "GET" }, options);
 };
 
 export const blogControllerCreate = (
@@ -174,7 +153,7 @@ export const blogControllerCreate = (
 ) => {
   return createInstance<PostDto>(
     {
-      url: `/api/blog`,
+      url: `/blog`,
       method: "POST",
       headers: { "Content-Type": "application/json" },
       data: postBodyDto,
@@ -188,9 +167,22 @@ export const blogControllerShow = (
   options?: SecondParameter<typeof createInstance>,
 ) => {
   return createInstance<PostDto>(
+    { url: `/blog/${id}`, method: "GET" },
+    options,
+  );
+};
+
+export const blogControllerUpdate = (
+  id: number,
+  postBodyDto: BodyType<PostBodyDto>,
+  options?: SecondParameter<typeof createInstance>,
+) => {
+  return createInstance<PostDto>(
     {
-      url: `/api/blog/${id}`,
-      method: "GET",
+      url: `/blog/${id}`,
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      data: postBodyDto,
     },
     options,
   );
@@ -225,4 +217,7 @@ export type BlogControllerCreateResult = NonNullable<
 >;
 export type BlogControllerShowResult = NonNullable<
   Awaited<ReturnType<typeof blogControllerShow>>
+>;
+export type BlogControllerUpdateResult = NonNullable<
+  Awaited<ReturnType<typeof blogControllerUpdate>>
 >;
