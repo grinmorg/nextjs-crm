@@ -1,7 +1,9 @@
 import { SignInForm } from "@/features/auth";
+import { getPageTitle } from "@/shared/constants/config";
 import { ROUTES } from "@/shared/constants/routes";
 import { UIFormPageSplitLayout } from "@/shared/ui/layout/ui-form-page-split";
 import { UILink } from "@/shared/ui/ui-link";
+import Head from "next/head";
 
 export default function SignIn() {
   const slides = [
@@ -26,21 +28,26 @@ export default function SignIn() {
   ];
 
   return (
-    <main className="py-6 min-h-screen bg-violet-200">
-      <div className="container">
-        <UIFormPageSplitLayout
-          title="Вход в учётную запись"
-          desc="Введите вашу почту и пароль"
-          form={<SignInForm />}
-          footer={
-            <p className="text-gray-500 leading-6 text-base">
-              Ещё нет аккаунта?{" "}
-              <UILink href={ROUTES.SIGN_UP}>Регистрация</UILink>
-            </p>
-          }
-          slides={slides}
-        />
-      </div>
-    </main>
+    <>
+      <Head>
+        <title>{getPageTitle("Вход")}</title>
+      </Head>
+      <main className="py-6 min-h-screen bg-violet-200">
+        <div className="container">
+          <UIFormPageSplitLayout
+            title="Вход в учётную запись"
+            desc="Введите вашу почту и пароль"
+            form={<SignInForm />}
+            footer={
+              <p className="text-gray-500 leading-6 text-base">
+                Ещё нет аккаунта?{" "}
+                <UILink href={ROUTES.SIGN_UP}>Регистрация</UILink>
+              </p>
+            }
+            slides={slides}
+          />
+        </div>
+      </main>
+    </>
   );
 }

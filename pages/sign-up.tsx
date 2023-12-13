@@ -1,7 +1,9 @@
 import { SignUpForm } from "@/features/auth";
+import { getPageTitle } from "@/shared/constants/config";
 import { ROUTES } from "@/shared/constants/routes";
 import { UIFormPageSplitLayout } from "@/shared/ui/layout/ui-form-page-split";
 import { UILink } from "@/shared/ui/ui-link";
+import Head from "next/head";
 
 export default function SignUp() {
   const slides = [
@@ -26,21 +28,27 @@ export default function SignUp() {
   ];
 
   return (
-    <main className="py-6 min-h-screen bg-violet-200">
-      <div className="container">
-        <UIFormPageSplitLayout
-          title="Создайте свой аккаунт"
-          desc="У вас нет учетной записи? Создайте свой аккаунт, это займет меньше минуты"
-          form={<SignUpForm />}
-          footer={
-            <p className="text-gray-500 leading-6 text-base">
-              У вас уже есть аккаунт?{" "}
-              <UILink href={ROUTES.SIGN_IN}>Вход</UILink>
-            </p>
-          }
-          slides={slides}
-        />
-      </div>
-    </main>
+    <>
+      <Head>
+        <title>{getPageTitle("Регистрация")}</title>
+      </Head>
+
+      <main className="py-6 min-h-screen bg-violet-200">
+        <div className="container">
+          <UIFormPageSplitLayout
+            title="Создайте свой аккаунт"
+            desc="У вас нет учетной записи? Создайте свой аккаунт, это займет меньше минуты"
+            form={<SignUpForm />}
+            footer={
+              <p className="text-gray-500 leading-6 text-base">
+                У вас уже есть аккаунт?{" "}
+                <UILink href={ROUTES.SIGN_IN}>Вход</UILink>
+              </p>
+            }
+            slides={slides}
+          />
+        </div>
+      </main>
+    </>
   );
 }

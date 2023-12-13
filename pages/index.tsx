@@ -1,12 +1,16 @@
 import React from "react";
 import Head from "next/head";
 import { UILink } from "@/shared/ui/ui-link";
+import { GetServerSideProps, InferGetServerSidePropsType } from "next";
+import { getContacts } from "@/shared/api/appwrite";
+import { IContact, IDocumentsContacts } from "@/shared/interfaces";
+import { getPageTitle } from "@/shared/constants/config";
 
-export default function HomePage() {
+export default function HomePage({ contacts }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
     <>
       <Head>
-        <title>DevRel CRM</title>
+        <title>{getPageTitle("Главная")}</title>
       </Head>
 
       <section className="bg-white dark:bg-violet-900 min-h-screen flex flex-col justify-center">
@@ -61,3 +65,15 @@ export default function HomePage() {
     </>
   );
 };
+
+export const getServerSideProps = (async (context) => {
+  const contacts = await getContacts();
+
+  return {
+    props: {
+      contacts,
+    },
+  };
+}) satisfies GetServerSideProps<{
+  contacts: IDocumentsContacts
+}>

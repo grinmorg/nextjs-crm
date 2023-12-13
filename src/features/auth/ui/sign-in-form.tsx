@@ -5,23 +5,10 @@ import { useSignInForm } from "../model/sign-in-form";
 import { OAuthForm } from "./oauth-form";
 
 export function SignInForm() {
-  const { register, handleSubmit, isPending, errors } = useSignInForm();
+  const { register, handleSubmit, isPending, errorType } = useSignInForm();
 
-  // Check for specific errors
-  const emailMustBeEmailError = errors.includes(ERRORS.MUST_BE_EMAIL)
-    ? ERRORS_MESSAGES[ERRORS.MUST_BE_EMAIL]
-    : "";
-  const emailExistsError = errors.includes(ERRORS.EMAIL_EXSISTS)
-    ? ERRORS_MESSAGES[ERRORS.EMAIL_EXSISTS]
-    : "";
-  const passwordMustBeGraterError = errors.includes(ERRORS.MUST_BE_GRATER)
-    ? ERRORS_MESSAGES[ERRORS.MUST_BE_GRATER]
-    : "";
-  const userNotFoundError = errors.includes(ERRORS.USER_NOT_FOUND)
-    ? ERRORS_MESSAGES[ERRORS.USER_NOT_FOUND]
-    : "";
-  const uncorrectedCredsError = errors.includes(ERRORS.UNCORRECTED_CREDS)
-    ? ERRORS_MESSAGES[ERRORS.UNCORRECTED_CREDS]
+  const invalidCredsError = errorType === ERRORS.INVALID_CREDS
+    ? ERRORS_MESSAGES[ERRORS.INVALID_CREDS]
     : "";
 
   return (
@@ -35,7 +22,7 @@ export function SignInForm() {
             type: "email",
             placeholder: "Почта",
           }}
-          error={userNotFoundError || emailMustBeEmailError || emailExistsError}
+          error={invalidCredsError}
           required
         />
 
@@ -47,7 +34,7 @@ export function SignInForm() {
             type: "password",
             placeholder: "Пароль",
           }}
-          error={passwordMustBeGraterError || uncorrectedCredsError}
+          error={invalidCredsError}
           required
         />
         <UIButton disabled={isPending} className="w-full" variant="primary">

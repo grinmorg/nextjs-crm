@@ -1,18 +1,28 @@
-import { authControllerGetSessionInfo } from "@/shared/api/generated";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
-
-const sessionKey = ["session"];
+import { getAccount } from "@/shared/api/appwrite";
+import { useEffect, useState } from "react";
 
 export function useSessionQuery() {
-  return useQuery({
-    queryKey: sessionKey,
-    queryFn: authControllerGetSessionInfo,
-    retry: 0, // кол-во поавторных запросов при ошибке
-    staleTime: 5 * 60 * 1000, // запрос будет считатся свежим ещё 5 мин после запрос
-  });
-}
+  const [isError, setIsError] = useState(false);
+  const [isPending, setIsPending] = useState(true);
 
-export function useResetSession() {
-  const queryClient = useQueryClient();
-  return () => queryClient.removeQueries();
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const isAuth = await getAccount();
+
+        setIsError(false);
+      } catch (error) {
+        setIsError(true);
+      } finally {
+        setIsPending(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  return {
+    isError,
+    isPending
+  }
 }

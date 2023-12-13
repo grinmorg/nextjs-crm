@@ -10,13 +10,14 @@ export function protectedPage<P>(Component: (props: P) => ReactElement) {
 
     const { isError, isPending } = useSessionQuery();
 
-    if (isPending || isError) {
-      if (isError) {
-        router.replace(ROUTES.SIGN_IN);
-      }
-      return <UIPageSpinner />;
+    if (isError) {
+      router.replace(ROUTES.SIGN_IN);
     }
 
-    return <Component {...props} />;
+
+    return <>
+      {isPending && <UIPageSpinner />}
+      <Component {...props} />
+    </>
   };
 }

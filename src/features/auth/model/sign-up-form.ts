@@ -1,36 +1,50 @@
-import { authControllerSignUp } from "@/shared/api/generated";
+import { signUp } from "@/shared/api/appwrite";
+import { ERRORS, ERRORS_MESSAGES } from "@/shared/constants/errors";
 import { ROUTES } from "@/shared/constants/routes";
-import { useMutation } from "@tanstack/react-query";
+import { IUser } from "@/shared/interfaces";
+import { AppwriteException } from "appwrite";
 import { useRouter } from "next/router";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 export function useSignUpForm() {
   const router = useRouter();
 
-  const { register, handleSubmit } = useForm<{
-    name: string;
-    email: string;
-    password: string;
-  }>();
+  const { register, handleSubmit } = useForm<IUser>();
 
-  // при передаче полей signUpMutation.mutate - запустится запрос
-  const signUpMutation = useMutation({
-    mutationFn: authControllerSignUp,
-    onSuccess() {
+  const [isPending, setIsPending] = useState(false);
+  const [errorType, setErrorType] = useState<string>('');
+
+  const handleSignUp = async (data: IUser) => {
+    setIsPending(true);
+    try {
+      await signUp(data);
+      setErrorType('')
       router.push(ROUTES.HOME);
-    },
-  });
+    } catch (e: unknown) {
 
-  // Перебиваю тип для ошибок
-  const errors: string[] =
-    signUpMutation.error instanceof Error
-      ? ["An error occurred"] // Default error message if it's a generic Error
-      : signUpMutation.error || [];
+      setIsPending(false);
+
+      if (e instanceof AppwriteException) {
+        if (e.type === ERRORS.RATE_LIMIT) {
+          // Rate Limit
+          toast.error(ERRORS_MESSAGES[ERRORS.RATE_LIMIT]);
+
+          return;
+        }
+
+        setErrorType(e.type)
+      }
+    }
+
+    setIsPending(false);
+  }
 
   return {
     register,
-    handleSubmit: handleSubmit((data) => signUpMutation.mutate(data)),
-    isPending: signUpMutation.isPending,
-    errors,
+    handleSubmit: handleSubmit((data) => handleSignUp(data)),
+    isPending,
+    errorType,
   };
 }

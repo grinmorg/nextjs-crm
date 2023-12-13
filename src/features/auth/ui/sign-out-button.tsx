@@ -7,7 +7,7 @@ export function SignOutButton() {
     <UIButton
       variant="secondary"
       disabled={isPending}
-      onClick={() => singOut({})}
+      onClick={() => singOut()}
     >
       Выход
     </UIButton>
