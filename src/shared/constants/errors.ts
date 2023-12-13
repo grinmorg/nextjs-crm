@@ -1,15 +1,14 @@
 export const ERRORS = {
-  MUST_BE_GRATER: "must-be-greater-8",
-  MUST_BE_EMAIL: "email must be an email",
-  EMAIL_EXSISTS: "email-exists",
-  USER_NOT_FOUND: "user-not-found",
-  UNCORRECTED_CREDS: "uncorrected-credentials",
-};
+  USER_EXSISTS: 'user_already_exists',
+  INVALID_PASSWORD: 'general_argument_invalid',
+  RATE_LIMIT: 'general_rate_limit_exceeded',
+  INVALID_CREDS: 'user_invalid_credentials',
+}
 
 export const ERRORS_MESSAGES = {
-  [ERRORS.MUST_BE_GRATER]: "Пароль должен быть как минимум 8 символов",
-  [ERRORS.MUST_BE_EMAIL]: "Почта должна быть почтой, например test@mail.ru",
-  [ERRORS.EMAIL_EXSISTS]: "Аккаунт с такой почтой уже существует",
-  [ERRORS.USER_NOT_FOUND]: "Такого пользователя не существует",
-  [ERRORS.UNCORRECTED_CREDS]: "Данные для входа не верны",
+  [ERRORS.INVALID_PASSWORD]: "Пароль должен быть как минимум 8 символов и не должен быть часто используемым паролем",
+  [ERRORS.RATE_LIMIT]: "Вы превысили общий лимит запросов, попробуйте позже",
+  [ERRORS.USER_EXSISTS]: "Аккаунт с такой почтой уже существует",
+  [ERRORS.INVALID_CREDS]: "Почта или пароль введены не верно",
+  // [ERRORS.USER_NOT_FOUND]: "Такого пользователя не существует",
 };

@@ -5,14 +5,13 @@ import { ERRORS, ERRORS_MESSAGES } from "@/shared/constants/errors";
 import { OAuthForm } from "./oauth-form";
 
 export function SignUpForm() {
-  const { register, handleSubmit, isPending, errors } = useSignUpForm();
+  const { register, handleSubmit, isPending, errorType } = useSignUpForm();
 
-  // Check for specific errors
-  const emailMustBeEmailError = errors.includes(ERRORS.MUST_BE_EMAIL)
-    ? ERRORS_MESSAGES[ERRORS.MUST_BE_EMAIL]
+  const userExistsError = errorType === ERRORS.USER_EXSISTS
+    ? ERRORS_MESSAGES[ERRORS.USER_EXSISTS]
     : "";
-  const emailExistsError = errors.includes(ERRORS.EMAIL_EXSISTS)
-    ? ERRORS_MESSAGES[ERRORS.EMAIL_EXSISTS]
+  const invalidPasswordError = errorType === ERRORS.INVALID_PASSWORD
+    ? ERRORS_MESSAGES[ERRORS.INVALID_PASSWORD]
     : "";
 
   return (
@@ -35,8 +34,8 @@ export function SignUpForm() {
             type: "email",
             placeholder: "Почта",
           }}
-          error={emailMustBeEmailError || emailExistsError}
           required
+          error={userExistsError}
         />
 
         <UITextField
@@ -47,12 +46,8 @@ export function SignUpForm() {
             type: "password",
             placeholder: "Пароль",
           }}
-          error={
-            errors.includes(ERRORS.MUST_BE_GRATER)
-              ? ERRORS_MESSAGES[ERRORS.MUST_BE_GRATER]
-              : ""
-          }
           required
+          error={invalidPasswordError}
         />
         <UIButton disabled={isPending} className="w-full" variant="primary">
           Регистрация

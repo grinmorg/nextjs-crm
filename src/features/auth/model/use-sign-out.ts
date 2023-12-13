@@ -1,23 +1,39 @@
-import { useResetSession } from "@/entities/session";
-import { authControllerSignOut } from "@/shared/api/generated";
+import { logout } from "@/shared/api/appwrite";
 import { ROUTES } from "@/shared/constants/routes";
-import { useMutation } from "@tanstack/react-query";
+import { AppwriteException } from "appwrite";
 import { useRouter } from "next/router";
+import { useState } from "react";
+import { toast } from "react-toastify";
 
 export function useSignOut() {
-  const resetSession = useResetSession();
+  const [isPending, setIsPending] = useState(false);
   const router = useRouter();
 
-  const singOutMutation = useMutation({
-    mutationFn: authControllerSignOut,
-    async onSuccess() {
+  const handleSignOut = async () => {
+    setIsPending(true);
+    try {
+      await logout();
       router.push(ROUTES.SIGN_IN);
-      resetSession();
-    },
-  });
+    } catch (e: unknown) {
+
+      setIsPending(false);
+
+      if (e instanceof AppwriteException) {
+        toast.error(e.message);
+
+        return;
+      }
+
+      console.log('Error in logout: ', e)
+    }
+
+    setIsPending(false);
+  }
+
+
 
   return {
-    isPending: singOutMutation.isPending,
-    singOut: singOutMutation.mutate,
+    isPending,
+    singOut: handleSignOut,
   };
 }

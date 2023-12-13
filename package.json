@@ -7,14 +7,13 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "api:download": "wget http://localhost:4200/docs-yaml -O ./src/shared/api/schema.yaml",
-    "api:generate": "orval",
     "prettier": "prettier -w ."
   },
   "dependencies": {
     "@headlessui/react": "^1.7.17",
     "@heroicons/react": "^2.0.18",
     "@tanstack/react-query": "^5.12.2",
+    "appwrite": "^13.0.1",
     "axios": "^1.6.2",
     "clsx": "^2.0.0",
     "eslint-config-prettier": "^9.1.0",
@@ -22,6 +21,7 @@
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.48.2",
+    "react-toastify": "^9.1.3",
     "socket.io": "^4.7.2",
     "socket.io-client": "^4.7.2",
     "swiper": "^11.0.5"
