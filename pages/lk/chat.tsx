@@ -8,11 +8,10 @@ interface Message {
 }
 
 export default function Page() {
-
   // State to store the messages
   const [messages, setMessages] = useState<Message[]>([]);
   // State to store the current message
-  const [currentMessage, setCurrentMessage] = useState<string>('');
+  const [currentMessage, setCurrentMessage] = useState<string>("");
 
   return (
     <UIBasePage>
@@ -36,4 +35,4 @@ export default function Page() {
       </div>
     </UIBasePage>
   );
-};
+}

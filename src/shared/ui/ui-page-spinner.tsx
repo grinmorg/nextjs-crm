@@ -2,7 +2,6 @@ import clsx from "clsx";
 import React from "react";
 
 export function UIPageSpinner({ className }: { className?: string }) {
-
   const [width, setWidth] = React.useState(0);
 
   React.useEffect(() => {
@@ -20,7 +19,7 @@ export function UIPageSpinner({ className }: { className?: string }) {
         requestAnimationFrame(updateWidth);
       } else {
         setWidth(100); // Ensure it reaches 100% when animation is done
-        console.log('Время кончилось!');
+        console.log("Время кончилось!");
       }
     };
 
@@ -37,7 +36,6 @@ export function UIPageSpinner({ className }: { className?: string }) {
         "fixed left-0 top-0 right-0 bg-violet-500 h-2",
         className,
       )}
-
       style={loaderStyle}
     ></div>
   );

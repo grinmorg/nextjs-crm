@@ -33,15 +33,15 @@ export default function SignUp() {
         <title>{getPageTitle("Регистрация")}</title>
       </Head>
 
-      <main className="py-6 min-h-screen bg-violet-200">
+      <main className="py-6 min-h-screen bg-violet-200 dark:bg-violet-900">
         <div className="container">
           <UIFormPageSplitLayout
-            title="Создайте свой аккаунт"
-            desc="У вас нет учетной записи? Создайте свой аккаунт, это займет меньше минуты"
+            title="Создайте свой профиль"
+            desc="Создайте свой профиль, это займет меньше минуты"
             form={<SignUpForm />}
             footer={
-              <p className="text-gray-500 leading-6 text-base">
-                У вас уже есть аккаунт?{" "}
+              <p className="text-gray-500 dark:text-violet-300 leading-6 text-base">
+                У вас уже есть профиль?{" "}
                 <UILink href={ROUTES.SIGN_IN}>Вход</UILink>
               </p>
             }

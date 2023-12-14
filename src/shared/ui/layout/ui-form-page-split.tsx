@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { ReactNode } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
@@ -28,19 +28,19 @@ export function UIFormPageSplitLayout({
 }) {
   return (
     <>
-      <div className="bg-white shadow rounded mb-6 max-w-5xl w-full mx-auto">
+      <div className="bg-white dark:bg-violet-950 shadow rounded mb-6 max-w-5xl w-full mx-auto">
         <div className="grid md:grid-cols-12">
-          <div className="bg-white shadow-md p-8 rounded-s xl:col-span-5 md:col-span-6">
+          <div className="bg-white dark:bg-violet-950 shadow-md p-8 rounded-s xl:col-span-5 md:col-span-6">
             <div className="mb-12">
               <UILogo className="text-xs" />
             </div>
             {title && (
-              <h6 className="text-base/[1.6] font-semibold text-gray-800 mb-0 mt-4">
+              <h6 className="text-base/[1.6] font-semibold text-gray-800 dark:text-white mb-0 mt-4">
                 {title}
               </h6>
             )}
             {desc && (
-              <p className="text-gray-500 text-sm/[1.6] mt-1 mb-6">{desc}</p>
+              <p className="text-gray-500 dark:text-violet-300 text-sm/[1.6] mt-1 mb-6">{desc}</p>
             )}
 
             {form}
@@ -72,13 +72,13 @@ export function UIFormPageSplitLayout({
                             </div>
                             <div className="text-center my-6 pb-12">
                               {item.title && (
-                                <h5 className="font-medium text-base/[1.6] text-gray-800 my-2.5">
+                                <h5 className="font-medium text-base/[1.6] text-gray-800 dark:text-white my-2.5">
                                   {item.title}
                                 </h5>
                               )}
 
                               {item.desc && (
-                                <p className="text-sm/[1.6] text-gray-500 mb-4">
+                                <p className="text-sm/[1.6] text-gray-500 dark:text-violet-300 mb-4">
                                   {item.desc}
                                 </p>
                               )}

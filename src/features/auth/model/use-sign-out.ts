@@ -1,6 +1,5 @@
-import { logout } from "@/shared/api/appwrite";
+import { supabase } from "@/shared/api/supabase/client";
 import { ROUTES } from "@/shared/constants/routes";
-import { AppwriteException } from "appwrite";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { toast } from "react-toastify";
@@ -11,29 +10,20 @@ export function useSignOut() {
 
   const handleSignOut = async () => {
     setIsPending(true);
-    try {
-      await logout();
+
+    const { error } = await supabase.auth.signOut();
+
+    if (error?.message) {
+      toast.error(error.message);
+    } else {
       router.push(ROUTES.SIGN_IN);
-    } catch (e: unknown) {
-
-      setIsPending(false);
-
-      if (e instanceof AppwriteException) {
-        toast.error(e.message);
-
-        return;
-      }
-
-      console.log('Error in logout: ', e)
     }
 
     setIsPending(false);
-  }
-
-
+  };
 
   return {
     isPending,
-    singOut: handleSignOut,
+    signOut: handleSignOut,
   };
 }

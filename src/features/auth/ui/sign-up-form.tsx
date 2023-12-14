@@ -1,31 +1,79 @@
+"use client";
 import { UIButton } from "@/shared/ui/ui-button";
 import { UITextField } from "@/shared/ui/ui-text-field";
-import { useSignUpForm } from "../model/sign-up-form";
-import { ERRORS, ERRORS_MESSAGES } from "@/shared/constants/errors";
 import { OAuthForm } from "./oauth-form";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { IUser } from "@/shared/interfaces";
+import { toast } from "react-toastify";
+import { useTransition } from "react";
+import { useRouter } from "next/router";
+import { ROUTES } from "@/shared/constants/routes";
+import createSupabaseBrowerClient from "@/shared/api/supabase/client";
+import { ERRORS_MESSAGES } from "@/shared/constants/errors";
+
+const FormSchema = z
+  .object({
+    email: z.string().email({
+      message: "Некорректная почта",
+    }),
+    password: z.string().min(6, {
+      message: "Пароль обязателен (минимально 6 символов)",
+    }),
+    confirm: z.string().min(6, {
+      message: "Пароль обязателен (минимально 6 символов)",
+    }),
+  })
+  .refine((data) => data.confirm === data.password, {
+    message: "Пароли не совпадают",
+    path: ["confirm"],
+  });
 
 export function SignUpForm() {
-  const { register, handleSubmit, isPending, errorType } = useSignUpForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<z.infer<typeof FormSchema>>({
+    resolver: zodResolver(FormSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+      confirm: "",
+    },
+  });
 
-  const userExistsError = errorType === ERRORS.USER_EXSISTS
-    ? ERRORS_MESSAGES[ERRORS.USER_EXSISTS]
-    : "";
-  const invalidPasswordError = errorType === ERRORS.INVALID_PASSWORD
-    ? ERRORS_MESSAGES[ERRORS.INVALID_PASSWORD]
-    : "";
+  const router = useRouter();
+
+  let [isPending, startTransition] = useTransition();
+
+  const onSubmit = (data: IUser) => {
+    startTransition(async () => {
+      const supabase = createSupabaseBrowerClient();
+
+      const { error } = await supabase.auth.signUp({
+        email: data.email,
+        password: data.password,
+      });
+      if (error?.status) {
+        toast.error(ERRORS_MESSAGES[error?.status]);
+      } else {
+        toast.success("Регистрация прошла успешно");
+
+        const user = await supabase.auth.signInWithPassword({
+          email: data.email,
+          password: data.password,
+        });
+
+        router.push(ROUTES.HOME);
+      }
+    });
+  };
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <UITextField
-          className="mb-4"
-          label="Ваше имя"
-          inputProps={{
-            ...register("name", { required: false }),
-            type: "text",
-            placeholder: "Имя",
-          }}
-        />
+      <form onSubmit={handleSubmit((data) => onSubmit(data))}>
         <UITextField
           className="mb-4"
           label="Ваша почта"
@@ -35,7 +83,7 @@ export function SignUpForm() {
             placeholder: "Почта",
           }}
           required
-          error={userExistsError}
+          error={errors.email?.message}
         />
 
         <UITextField
@@ -46,17 +94,24 @@ export function SignUpForm() {
             type: "password",
             placeholder: "Пароль",
           }}
+          error={errors.password?.message}
           required
-          error={invalidPasswordError}
+        />
+        <UITextField
+          className="mb-4"
+          label="Пароль ещё раз"
+          inputProps={{
+            ...register("confirm", { required: true }),
+            type: "password",
+            placeholder: "Пароль ещё раз",
+          }}
+          error={errors.confirm?.message}
+          required
         />
         <UIButton disabled={isPending} className="w-full" variant="primary">
           Регистрация
         </UIButton>
       </form>
-
-      <div className="py-4 text-center">
-        <span className="fs-13 fw-bold">или</span>
-      </div>
 
       <OAuthForm />
     </>

@@ -5,12 +5,12 @@ paths:
       operationId: AppController_getHello
       parameters: []
       responses:
-        '200':
-          description: ''
+        "200":
+          description: ""
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/HelloWorldDto'
+                $ref: "#/components/schemas/HelloWorldDto"
   /auth/sign-up:
     post:
       operationId: AuthController_signUp
@@ -20,10 +20,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SignUpBodyDto'
+              $ref: "#/components/schemas/SignUpBodyDto"
       responses:
-        '201':
-          description: ''
+        "201":
+          description: ""
       tags:
         - Auth
   /auth/sign-in:
@@ -35,10 +35,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SignInBodyDto'
+              $ref: "#/components/schemas/SignInBodyDto"
       responses:
-        '200':
-          description: ''
+        "200":
+          description: ""
       tags:
         - Auth
   /auth/sign-out:
@@ -46,8 +46,8 @@ paths:
       operationId: AuthController_signOut
       parameters: []
       responses:
-        '200':
-          description: ''
+        "200":
+          description: ""
       tags:
         - Auth
   /auth/session:
@@ -55,12 +55,12 @@ paths:
       operationId: AuthController_getSessionInfo
       parameters: []
       responses:
-        '200':
-          description: ''
+        "200":
+          description: ""
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GetSessionInfoDto'
+                $ref: "#/components/schemas/GetSessionInfoDto"
       tags:
         - Auth
   /account:
@@ -68,12 +68,12 @@ paths:
       operationId: AccountController_getAccount
       parameters: []
       responses:
-        '200':
-          description: ''
+        "200":
+          description: ""
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AccountDto'
+                $ref: "#/components/schemas/AccountDto"
       tags:
         - Account
     patch:
@@ -84,14 +84,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PatchAccountDto'
+              $ref: "#/components/schemas/PatchAccountDto"
       responses:
-        '200':
-          description: ''
+        "200":
+          description: ""
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AccountDto'
+                $ref: "#/components/schemas/AccountDto"
       tags:
         - Account
   /blog:
@@ -99,14 +99,14 @@ paths:
       operationId: BlogController_index
       parameters: []
       responses:
-        '200':
+        "200":
           description: List of posts
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/PostDto'
+                  $ref: "#/components/schemas/PostDto"
       tags:
         - Blog
     post:
@@ -117,14 +117,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PostBodyDto'
+              $ref: "#/components/schemas/PostBodyDto"
       responses:
-        '200':
-          description: ''
+        "200":
+          description: ""
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PostDto'
+                $ref: "#/components/schemas/PostDto"
       tags:
         - Blog
   /blog/{id}:
@@ -137,12 +137,12 @@ paths:
           schema:
             type: number
       responses:
-        '200':
-          description: ''
+        "200":
+          description: ""
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PostDto'
+                $ref: "#/components/schemas/PostDto"
       tags:
         - Blog
     patch:
@@ -158,19 +158,19 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PostBodyDto'
+              $ref: "#/components/schemas/PostBodyDto"
       responses:
-        '200':
-          description: ''
+        "200":
+          description: ""
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PostDto'
+                $ref: "#/components/schemas/PostDto"
       tags:
         - Blog
 info:
   title: Block list
-  description: ''
+  description: ""
   version: 1.0.0
   contact: {}
 tags: []

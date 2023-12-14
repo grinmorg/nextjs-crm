@@ -32,15 +32,15 @@ export default function SignIn() {
       <Head>
         <title>{getPageTitle("Вход")}</title>
       </Head>
-      <main className="py-6 min-h-screen bg-violet-200">
+      <main className="py-6 min-h-screen bg-violet-200 dark:bg-violet-900">
         <div className="container">
           <UIFormPageSplitLayout
-            title="Вход в учётную запись"
+            title="Вход в систему"
             desc="Введите вашу почту и пароль"
             form={<SignInForm />}
             footer={
-              <p className="text-gray-500 leading-6 text-base">
-                Ещё нет аккаунта?{" "}
+              <p className="text-gray-500 dark:text-violet-300 leading-6 text-base">
+                Ещё нет профиля?{" "}
                 <UILink href={ROUTES.SIGN_UP}>Регистрация</UILink>
               </p>
             }

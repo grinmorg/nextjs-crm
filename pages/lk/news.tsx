@@ -6,4 +6,4 @@ export default function Page() {
       <h2 className="text-lg font-medium mr-auto">Новости</h2>
     </UIBasePage>
   );
-};
+}

@@ -9,7 +9,7 @@ export function UILogo({ className }: { className?: string }) {
       href={ROUTES.HOME}
     >
       <img alt="CRAB" className="w-10 md:w-12" src="/dist/images/logo.svg" />
-      <span className="leading-none hidden md:inline"> CRAB </span>
+      <span className="leading-none hidden md:inline dark:text-white"> CRAB </span>
     </Link>
   );
 }
