@@ -1,6 +1,5 @@
 import UIBasePage from "@/shared/ui/layout/ui-base-page";
-import { useEffect, useState } from "react";
-import { io } from "socket.io-client";
+import { useState } from "react";
 
 interface Message {
   createdAt?: string;
@@ -8,42 +7,12 @@ interface Message {
   text: string;
 }
 
-/**
- * FIXME: Так и не удалось заставить работать
- */
-
-// Create a socket connection
-// let socket = io('http://localhost:4205');
-
 export default function Page() {
 
   // State to store the messages
   const [messages, setMessages] = useState<Message[]>([]);
   // State to store the current message
   const [currentMessage, setCurrentMessage] = useState<string>('');
-
-  useEffect(() => {
-
-    let socket = io('http://localhost:4205');
-
-    // Listen for incoming messages
-    socket.on('message', (message: string) => {
-      const newMessage: Message = { text: message };
-      setMessages((prevMessages) => [...prevMessages, newMessage]);
-    });
-
-    // Clean up the socket connection on unmount
-    return () => {
-      socket.disconnect();
-    };
-  }, []);
-
-  const sendMessage = () => {
-    // Send the message to the server
-    socket.emit('message', currentMessage);
-    // Clear the currentMessage state
-    setCurrentMessage('');
-  };
 
   return (
     <UIBasePage>
@@ -63,7 +32,7 @@ export default function Page() {
         />
 
         {/* Button to submit the new message */}
-        <button onClick={sendMessage}>Send</button>
+        <button>Send</button>
       </div>
     </UIBasePage>
   );
