@@ -1,14 +1,18 @@
 import { getAccount } from "@/shared/api/appwrite";
+import { IUser } from "@/shared/interfaces";
 import { useEffect, useState } from "react";
 
 export function useSessionQuery() {
   const [isError, setIsError] = useState(false);
   const [isPending, setIsPending] = useState(true);
+  const [data, setData] = useState<IUser | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const isAuth = await getAccount();
+        const authUser = await getAccount();
+
+        setData(authUser as IUser)
 
         setIsError(false);
       } catch (error) {
@@ -22,6 +26,7 @@ export function useSessionQuery() {
   }, []);
 
   return {
+    data,
     isError,
     isPending
   }
