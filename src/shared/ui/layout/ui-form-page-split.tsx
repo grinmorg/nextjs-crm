@@ -40,7 +40,9 @@ export function UIFormPageSplitLayout({
               </h6>
             )}
             {desc && (
-              <p className="text-gray-500 dark:text-violet-300 text-sm/[1.6] mt-1 mb-6">{desc}</p>
+              <p className="text-gray-500 dark:text-violet-300 text-sm/[1.6] mt-1 mb-6">
+                {desc}
+              </p>
             )}
 
             {form}

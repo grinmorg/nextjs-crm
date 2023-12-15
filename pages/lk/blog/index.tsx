@@ -7,7 +7,9 @@ export default function Page() {
   return (
     <UIBasePage title="Блог">
       <div className="flex justify-between">
-        <h2 className="text-2xl font-medium mr-auto mb-4 dark:text-white">Все посты</h2>
+        <h2 className="text-2xl font-medium mr-auto mb-4 dark:text-white">
+          Все посты
+        </h2>
         <UILink href={ROUTES.LK_BLOG_CREATE}>+ Новый пост</UILink>
       </div>
 

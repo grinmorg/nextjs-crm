@@ -65,3 +65,14 @@ export const POST_DEFAULT_CONTENT = {
     },
   ],
 };
+
+export const EMAIL_DEFAULT_CONTENT = {
+  type: "doc",
+  content: [
+    {
+      type: "heading",
+      attrs: { level: 3 },
+      content: [{ type: "text", text: "Ваше сообщение" }],
+    },
+  ],
+};

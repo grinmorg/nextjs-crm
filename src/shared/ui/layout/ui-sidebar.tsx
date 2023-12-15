@@ -12,7 +12,7 @@ export function UISidebar({ menu }: Props) {
   const router = useRouter();
 
   return (
-    <div className="js-guide-step-2 w-[50px] md:w-[200px] pt-6 pb-10 bg-white dark:bg-violet-950 flex flex-col border-r-[3px] border-violet-500 border-opacity-20">
+    <div className="js-guide-step-1 w-[50px] md:w-[200px] pt-6 pb-10 bg-white dark:bg-violet-950 flex flex-col border-r-[3px] border-violet-500 border-opacity-20">
       <div className="flex justify-center mb-6">
         <UILogo className="md:-ml-4" />
       </div>
@@ -82,7 +82,9 @@ function SidebarNavItem({
     >
       <div className="min-w-[18px] md:w-6">{item.icon}</div>
       <div className="hidden md:flex grow items-center gap-2 justify-between">
-        <span className="text-base text-gray-800 dark:text-white">{item.label}</span>
+        <span className="text-base text-gray-800 dark:text-white">
+          {item.label}
+        </span>
       </div>
     </Link>
   );

@@ -2,10 +2,11 @@ import { SignOutButton } from "@/features/auth";
 import { Popover, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 import { UIThemeToggle } from "../ui-theme-toggle";
+import { UIAvatar } from "../ui-avatar";
 
 export function UIHeader() {
   return (
-    <header className="js-guide-step-1 border-b-[3px] border-violet-500 border-opacity-20 bg-white dark:bg-violet-950 py-3 px-6">
+    <header className="border-b-[3px] border-violet-500 border-opacity-20 bg-white dark:bg-violet-950 py-3 px-6">
       <div className="flex gap-2 ">
         <div className="flex gap-4 items-center">
           <UIThemeToggle />
@@ -44,12 +45,8 @@ export function UIHeader() {
           <Popover className="relative h-8 w-8">
             {({ open }) => (
               <>
-                <Popover.Button className="mask is-hexagon-2 bg-violet-300 outline-none">
-                  <img
-                    className="w-full h-full object-cover"
-                    src="https://avataaars.io/?avatarStyle=Transparent&topType=LongHairNotTooLong&accessoriesType=Prescription02&hairColor=Blue&facialHairType=Blank&clotheType=ShirtScoopNeck&clotheColor=Gray01&eyeType=WinkWacky&eyebrowType=UpDownNatural&mouthType=Eating&skinColor=Yellow"
-                    alt="avatar"
-                  />
+                <Popover.Button>
+                  <UIAvatar src="https://avataaars.io/?avatarStyle=Transparent&topType=LongHairNotTooLong&accessoriesType=Prescription02&hairColor=Blue&facialHairType=Blank&clotheType=ShirtScoopNeck&clotheColor=Gray01&eyeType=WinkWacky&eyebrowType=UpDownNatural&mouthType=Eating&skinColor=Yellow" />
                 </Popover.Button>
 
                 <Transition

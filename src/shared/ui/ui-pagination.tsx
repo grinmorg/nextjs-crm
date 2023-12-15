@@ -1,8 +1,36 @@
-export function UIPagination() {
+import React from "react";
+
+interface Props {
+  currentPage: number;
+  setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
+  totalPages: number;
+}
+
+export function UIPagination({
+  currentPage,
+  setCurrentPage,
+  totalPages,
+}: Props) {
+  const handlePrevClick = () => {
+    if (currentPage > 1) {
+      setCurrentPage((prevPage: number) => prevPage - 1);
+    }
+  };
+
+  const handleNextClick = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage((prevPage: number) => prevPage + 1);
+    }
+  };
+
   return (
-    <div className="flex justify-center items-center gap-2 mb-4">
+    <div className="flex justify-center items-center gap-2 mb-4 max-w-7xl">
       <div className="flex items-center">
-        <button className="bg-white dark:bg-violet-950 dark:text-white flex items-center gap-2 border border-gray-300 rounded-md text-sm tracking-wider transition-all duration-150 hover:shadow-lg focus:shadow-lg py-2 px-3">
+        <button
+          className="disabled:opacity-50 bg-white dark:bg-violet-950 dark:text-white flex items-center gap-2 border border-gray-300 rounded-md text-sm tracking-wider transition-all duration-150 hover:shadow-lg disabled:shadow-none focus:shadow-lg py-2 px-3"
+          onClick={handlePrevClick}
+          disabled={currentPage == 1}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="1em"
@@ -19,7 +47,11 @@ export function UIPagination() {
       </div>
 
       <div className="flex items-center">
-        <button className="bg-white dark:bg-violet-950 dark:text-white flex items-center gap-2 border border-gray-300 rounded-md text-sm tracking-wider transition-all duration-150 hover:shadow-lg focus:shadow-lg py-2 px-3">
+        <button
+          className="disabled:opacity-50 bg-white dark:bg-violet-950 dark:text-white flex items-center gap-2 border border-gray-300 rounded-md text-sm tracking-wider transition-all duration-150 hover:shadow-lg disabled:shadow-none focus:shadow-lg py-2 px-3"
+          onClick={handleNextClick}
+          disabled={currentPage == totalPages}
+        >
           Вперед{" "}
           <svg
             xmlns="http://www.w3.org/2000/svg"
