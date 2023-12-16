@@ -14,17 +14,20 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>,
 ) {
-  const completion = await openai.chat.completions.create({
+  const response = await openai.chat.completions.create({
+    model: "gpt-3.5-turbo",
     messages: [
       {
-        role: "system",
-        content: "You are a helpful assistant designed to output JSON.",
-      },
-      { role: "user", content: "Who won the world series in 2020?" },
+        "role": "user",
+        "content": "Who won the world series in 2020?"
+      }
     ],
-    model: "gpt-3.5-turbo-1106",
-    response_format: { type: "json_object" },
+    temperature: 1,
+    max_tokens: 256,
+    top_p: 1,
+    frequency_penalty: 0,
+    presence_penalty: 0,
   });
 
-  res.status(200).json({ message: JSON.stringify(completion.choices[0].message.content) });
+  res.status(200).json({ message: JSON.stringify(response) });
 }
