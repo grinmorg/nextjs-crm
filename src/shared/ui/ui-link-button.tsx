@@ -4,7 +4,9 @@ import { STYLES } from "../constants/styles";
 import clsx from "clsx";
 
 type UIButtonVariant = "primary" | "secondary" | "danger";
-export type UILinkProps = { variant: UIButtonVariant; } & Parameters<typeof Link>[0];
+export type UILinkProps = { variant: UIButtonVariant } & Parameters<
+  typeof Link
+>[0];
 
 export function UILinkButton({ variant, className, ...props }: UILinkProps) {
   return (

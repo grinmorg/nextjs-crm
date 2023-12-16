@@ -90,40 +90,40 @@ export const menuAside: MenuAsideItem[] = [
     label: "Инструменты",
     href: "/lk/tools",
   },
-  {
-    icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-        <g fill="none" stroke="currentColor" strokeLinecap="round">
-          <path
-            strokeWidth="1.5"
-            d="M17 3.338A9.954 9.954 0 0 0 12 2C6.477 2 2 6.477 2 12c0 1.6.376 3.112 1.043 4.453c.178.356.237.763.134 1.148l-.595 2.226a1.3 1.3 0 0 0 1.591 1.592l2.226-.596a1.634 1.634 0 0 1 1.149.133A9.958 9.958 0 0 0 12 22c5.523 0 10-4.477 10-10c0-1.821-.487-3.53-1.338-5"
-          ></path>
-          <path
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="M8 12h.009m3.982 0H12m3.991 0H16"
-          ></path>
-        </g>
-      </svg>
-    ),
-    label: "Чат",
-    href: "/lk/chat",
-  },
-  {
-    icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-        <path
-          fill="none"
-          stroke="currentColor"
-          strokeLinecap="round"
-          strokeWidth="1.5"
-          d="M8 12h1m7 0h-4m4-4h-1m-3 0H8m0 8h5M3 14v-4c0-3.771 0-5.657 1.172-6.828C5.343 2 7.229 2 11 2h2c3.771 0 5.657 0 6.828 1.172c.654.653.943 1.528 1.07 2.828M21 10v4c0 3.771 0 5.657-1.172 6.828C18.657 22 16.771 22 13 22h-2c-3.771 0-5.657 0-6.828-1.172c-.654-.653-.943-1.528-1.07-2.828"
-        ></path>
-      </svg>
-    ),
-    label: "Новости",
-    href: "/lk/news",
-  },
+  // {
+  //   icon: (
+  //     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  //       <g fill="none" stroke="currentColor" strokeLinecap="round">
+  //         <path
+  //           strokeWidth="1.5"
+  //           d="M17 3.338A9.954 9.954 0 0 0 12 2C6.477 2 2 6.477 2 12c0 1.6.376 3.112 1.043 4.453c.178.356.237.763.134 1.148l-.595 2.226a1.3 1.3 0 0 0 1.591 1.592l2.226-.596a1.634 1.634 0 0 1 1.149.133A9.958 9.958 0 0 0 12 22c5.523 0 10-4.477 10-10c0-1.821-.487-3.53-1.338-5"
+  //         ></path>
+  //         <path
+  //           strokeLinejoin="round"
+  //           strokeWidth="2"
+  //           d="M8 12h.009m3.982 0H12m3.991 0H16"
+  //         ></path>
+  //       </g>
+  //     </svg>
+  //   ),
+  //   label: "Чат",
+  //   href: "/lk/chat",
+  // },
+  // {
+  //   icon: (
+  //     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  //       <path
+  //         fill="none"
+  //         stroke="currentColor"
+  //         strokeLinecap="round"
+  //         strokeWidth="1.5"
+  //         d="M8 12h1m7 0h-4m4-4h-1m-3 0H8m0 8h5M3 14v-4c0-3.771 0-5.657 1.172-6.828C5.343 2 7.229 2 11 2h2c3.771 0 5.657 0 6.828 1.172c.654.653.943 1.528 1.07 2.828M21 10v4c0 3.771 0 5.657-1.172 6.828C18.657 22 16.771 22 13 22h-2c-3.771 0-5.657 0-6.828-1.172c-.654-.653-.943-1.528-1.07-2.828"
+  //       ></path>
+  //     </svg>
+  //   ),
+  //   label: "Новости",
+  //   href: "/lk/news",
+  // },
   {
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">

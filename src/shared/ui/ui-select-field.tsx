@@ -31,14 +31,19 @@ export function UISelectField({
   return (
     <div className={clsx(className, "flex flex-col gap-1")}>
       {label && (
-        <label htmlFor={id} className="block text-sm font-medium text-gray-800 dark:text-white">
+        <label
+          htmlFor={id}
+          className="block text-sm font-medium text-gray-800 dark:text-white"
+        >
           {label}
         </label>
       )}
       <Listbox value={selected} onChange={setSelected}>
         <div className="relative">
           <Listbox.Button className="relative w-full border border-gray-300 dark:border-gray-700 rounded bg-white dark:bg-violet-900 py-2 pl-4 min-h-[40px] pr-10 text-left focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
-            <span className="block truncate dark:text-white">{selected.name}</span>
+            <span className="block truncate dark:text-white">
+              {selected.name}
+            </span>
             <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
               <ChevronUpDownIcon
                 className="h-5 w-5 text-gray-400"
@@ -58,9 +63,10 @@ export function UISelectField({
                   <Listbox.Option
                     key={itemIdx}
                     className={({ active }) =>
-                      `relative cursor-default select-none py-2 pl-10 pr-4 ${active
-                        ? "bg-amber-100 text-amber-900"
-                        : "text-gray-800 dark:text-white"
+                      `relative cursor-default select-none py-2 pl-10 pr-4 ${
+                        active
+                          ? "bg-amber-100 text-amber-900"
+                          : "text-gray-800 dark:text-white"
                       }`
                     }
                     value={item}
@@ -68,8 +74,9 @@ export function UISelectField({
                     {({ selected }) => (
                       <>
                         <span
-                          className={`block truncate ${selected ? "font-medium" : "font-normal"
-                            }`}
+                          className={`block truncate ${
+                            selected ? "font-medium" : "font-normal"
+                          }`}
                         >
                           {item.name}
                         </span>

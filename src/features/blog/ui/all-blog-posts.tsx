@@ -2,7 +2,6 @@ import React from "react";
 import { useGetBlogPosts } from "../model/use-get-blog-posts";
 import { IPost } from "@/shared/interfaces";
 import { UIPagination } from "@/shared/ui/ui-pagination";
-import { UISpinner } from "@/shared/ui/ui-spinner";
 
 const tags = [
   "Бизнес",

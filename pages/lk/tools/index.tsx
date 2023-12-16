@@ -6,9 +6,7 @@ export default function Page() {
   return (
     <UIBasePage>
       <div className="flex justify-between">
-        <h2 className={STYLES.TITLE.H2}>
-          Инструменты
-        </h2>
+        <h2 className={STYLES.TITLE.H2}>Инструменты</h2>
       </div>
 
       <AllToolsCards />

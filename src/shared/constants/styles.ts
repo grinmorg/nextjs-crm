@@ -8,6 +8,6 @@ export const STYLES = {
       "border border-red-500 text-red-500 transition-all hover:shadow-lg hover:bg-red-500 hover:text-white hover:shadow-red-500/30 focus:shadow-none focus:outline focus:outline-red-500/40 disabled:opacity-50",
   },
   TITLE: {
-    H2: "text-2xl font-medium mr-auto mb-4 dark:text-white"
-  }
+    H2: "text-2xl font-medium mr-auto mb-4 dark:text-white",
+  },
 };

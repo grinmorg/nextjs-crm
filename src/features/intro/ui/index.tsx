@@ -6,7 +6,7 @@ import { IntroItem } from "./intro-item";
 import { useAppContext } from "@/shared/context";
 
 export function IntroGuide() {
-  const { showIntro, setShowIntro } = useAppContext()
+  const { showIntro, setShowIntro } = useAppContext();
 
   const steps = [
     {

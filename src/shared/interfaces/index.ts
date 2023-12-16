@@ -28,3 +28,22 @@ export interface IUser {
   name?: string | undefined;
   confirm?: string;
 }
+
+export interface IReview {
+  id: string;
+  created_at: string;
+  event?: string;
+  message?: string;
+  stars?: string;
+  memeber_id?: string;
+}
+
+export interface IMember {
+  id: number;
+  created_at: string;
+  name?: string;
+  email?: string;
+  tg?: string;
+  job?: string;
+  level?: string;
+}

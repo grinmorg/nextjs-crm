@@ -49,9 +49,7 @@ export function AppWrapper({ children }: { children: React.ReactNode }) {
   };
 
   return (
-    <AppContext.Provider
-      value={contextValues}
-    >
+    <AppContext.Provider value={contextValues}>
       {loading && !user && <UIPageSpinner />}
       {children}
     </AppContext.Provider>

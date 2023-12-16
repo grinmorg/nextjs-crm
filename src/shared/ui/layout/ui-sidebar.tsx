@@ -31,7 +31,9 @@ export function UISidebar({ menu }: Props) {
         </ul>
       </nav>
 
-      <button onClick={() => setShowIntro(true)} className="mt-auto flex items-center gap-2 h-[40px] md:h-[50px] px-[12px] md:px-6 text-gray-500 dark:text-violet-300"
+      <button
+        onClick={() => setShowIntro(true)}
+        className="mt-auto flex items-center gap-2 h-[40px] md:h-[50px] px-[12px] md:px-6 text-gray-500 dark:text-violet-300"
       >
         <div className="min-w-[18px] md:w-6">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">

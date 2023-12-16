@@ -7,7 +7,6 @@ import { UITextField } from "@/shared/ui/ui-text-field";
 import { Disclosure, Transition } from "@headlessui/react";
 import React from "react";
 
-
 export default function Page() {
   return (
     <UIBasePage>

@@ -23,6 +23,7 @@ export default function UIContentEditor({
       defaultValue={JSON.parse(content)}
       storageKey={storageKey}
       disableLocalStorage={!activateLocalStorage}
+      completionApi="/api"
     />
   );
 }
