@@ -31,7 +31,7 @@ export function CreateBlogPost() {
     }
 
     try {
-      savePost({ ...newPost, user_id: user.id });
+      savePost({ ...newPost, user_id: user?.id });
     } catch (error: any) {
       throw new Error(error);
     }

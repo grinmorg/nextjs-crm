@@ -1,8 +1,9 @@
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, ReactNode, useState } from 'react'
 
+type UISizeVariant = "base" | "xl";
 
-export function UIModal({ button, children }: { button: ReactNode, children: ReactNode }) {
+export function UIModal({ button, children, size = 'base' }: { button: ReactNode, children: ReactNode, size?: UISizeVariant; }) {
     let [isOpen, setIsOpen] = useState(false)
 
     function closeModal() {
@@ -44,7 +45,7 @@ export function UIModal({ button, children }: { button: ReactNode, children: Rea
                                 leaveFrom="opacity-100 scale-100"
                                 leaveTo="opacity-0 scale-95"
                             >
-                                <Dialog.Panel className="w-full max-w-2xl transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                                <Dialog.Panel className={`${size == 'xl' ? 'max-w-2xl' : 'max-w-lg'} w-full transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all`}>
                                     {children}
                                 </Dialog.Panel>
                             </Transition.Child>

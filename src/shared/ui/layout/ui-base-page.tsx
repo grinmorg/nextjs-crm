@@ -5,6 +5,7 @@ import { UIHeader } from "./ui-header";
 import { ReactNode } from "react";
 import { getPageTitle } from "@/shared/constants/config";
 import { protectedPage } from "@/features/auth";
+import { IntroGuide } from "@/features/intro/ui";
 
 interface Props {
   children: ReactNode;
@@ -17,6 +18,8 @@ export default protectedPage(function UIBasePage({ children, title }: Props) {
       <Head>
         <title>{getPageTitle(title)}</title>
       </Head>
+
+      <IntroGuide />
 
       <div className="md:p-4 min-h-screen flex flex-col bg-violet-200 dark:bg-violet-800">
         <div className="flex overflow-hidden md:rounded-xl shadow-xl grow">

@@ -4,4 +4,6 @@ export const ROUTES = {
   SIGN_IN: "/sign-in",
   LK_BLOG: "/lk/blog",
   LK_BLOG_CREATE: "/lk/blog/create",
+  LK_TOOLS: "/lk/tools",
+  LK_TOOLS_QUIZ: "/lk/tools/quiz",
 };

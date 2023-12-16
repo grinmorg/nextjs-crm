@@ -28,9 +28,9 @@ export function UIFormPageSplitLayout({
 }) {
   return (
     <>
-      <div className="bg-white dark:bg-violet-950 shadow rounded mb-6 max-w-5xl w-full mx-auto">
+      <div className="bg-white dark:bg-violet-950 shadow rounded-lg mb-6 max-w-5xl w-full md:mx-auto">
         <div className="grid md:grid-cols-12">
-          <div className="bg-white dark:bg-violet-950 shadow-md p-8 rounded-s xl:col-span-5 md:col-span-6">
+          <div className="bg-white dark:bg-violet-950 shadow-md p-8 rounded-lg md:rounded-none md:rounded-s xl:col-span-5 md:col-span-6">
             <div className="mb-12">
               <UILogo className="text-xs" />
             </div>

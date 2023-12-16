@@ -5,11 +5,20 @@ import { IUser } from "../interfaces";
 import { supabase } from "../api/supabase/client";
 import { UIPageSpinner } from "../ui/ui-page-spinner";
 
-const AppContext = createContext<any>(undefined);
+interface IAppContext {
+  user: IUser | undefined;
+  setUser: React.Dispatch<React.SetStateAction<IUser | undefined>>;
+  supabase: any;
+  showIntro: boolean;
+  setShowIntro: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const AppContext = createContext<IAppContext | null>(null);
 
 export function AppWrapper({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<IUser | undefined>(undefined);
   const [loading, setLoading] = useState<boolean>(false);
+  const [showIntro, setShowIntro] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchCurrentUser = async () => {
@@ -31,13 +40,17 @@ export function AppWrapper({ children }: { children: React.ReactNode }) {
     fetchCurrentUser();
   }, []);
 
+  const contextValues: IAppContext = {
+    user,
+    setUser,
+    supabase,
+    showIntro,
+    setShowIntro,
+  };
+
   return (
     <AppContext.Provider
-      value={{
-        user,
-        setUser,
-        supabase,
-      }}
+      value={contextValues}
     >
       {loading && !user && <UIPageSpinner />}
       {children}
@@ -46,5 +59,11 @@ export function AppWrapper({ children }: { children: React.ReactNode }) {
 }
 
 export function useAppContext() {
-  return useContext(AppContext);
+  const context = useContext(AppContext);
+
+  if (!context) {
+    throw new Error("useAppContext must be used within an AppWrapper");
+  }
+
+  return context;
 }
