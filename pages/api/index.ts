@@ -22,11 +22,6 @@ export default async function handler(
         "content": "Who won the world series in 2020?"
       }
     ],
-    temperature: 1,
-    max_tokens: 256,
-    top_p: 1,
-    frequency_penalty: 0,
-    presence_penalty: 0,
   });
 
   res.status(200).json({ message: JSON.stringify(response) });
