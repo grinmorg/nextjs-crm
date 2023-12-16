@@ -14,7 +14,7 @@ export default function HomePage() {
       <section className="bg-violet-900 min-h-screen flex flex-col justify-center">
         <div className="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-12">
           <UILink
-            href="/lk/calendar"
+            href="/lk/contacts"
             className="inline-flex justify-between items-center py-1 px-1 pr-4 mb-7 text-sm  rounded-full bg-gray-800 text-white hover:bg-gray-200 dark:hover:bg-gray-700"
             role="alert"
           >
@@ -22,7 +22,7 @@ export default function HomePage() {
               Новое
             </span>{" "}
             <span className="text-sm font-medium">
-              Удобный календарь для ваших мероприятий
+              Все контакты и статистика по ним в одном месте
             </span>
             <svg
               className="ml-2 w-5 h-5"
@@ -40,10 +40,6 @@ export default function HomePage() {
           <h1 className="mb-4 text-4xl font-extrabold tracking-tight leading-none  md:text-5xl lg:text-6xl text-white">
             Экономим время DevRel разработчиков
           </h1>
-          <p className="mb-8 text-lg font-normal t lg:text-xl sm:px-16 xl:px-48 text-gray-400">
-            Here at Flowbite we focus on markets where technology, innovation,
-            and capital can unlock long-term value and drive economic growth.
-          </p>
           <div className="flex flex-col mb-8 lg:mb-16 space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
             <Link
               href="/lk"

@@ -6,6 +6,7 @@ import { ReactNode } from "react";
 import { getPageTitle } from "@/shared/constants/config";
 import { protectedPage } from "@/features/auth";
 import { IntroGuide } from "@/features/intro/ui";
+import Script from "next/script";
 
 interface Props {
   children: ReactNode;

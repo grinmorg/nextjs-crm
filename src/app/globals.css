@@ -24,3 +24,16 @@
   text-shadow: none;
   @apply text-white focus:text-white hover:text-white text-opacity-100 bg-violet-500 focus:bg-violet-500 font-normal hover:bg-violet-600 transition-all disabled:opacity-50 shadow shadow-violet-500/30;
 }
+
+
+a.fc-event {
+  @apply cursor-pointer bg-violet-500 border-none p-1;
+}
+
+.fc .fc-button-group>.fc-button {
+  @apply bg-violet-500 border-none;
+}
+
+.fc-today-button.fc-button {
+  @apply bg-violet-500 border-none disabled:bg-violet-300 hover:bg-violet-600;
+}

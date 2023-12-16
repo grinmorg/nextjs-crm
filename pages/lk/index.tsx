@@ -1,11 +1,12 @@
+import { EventStats } from "@/features/stats/ui/event-stats";
+import { MainStats } from "@/features/stats/ui/main-stats";
 import UIBasePage from "@/shared/ui/layout/ui-base-page";
 
 export default function Page() {
   return (
-    <>
-      <UIBasePage>
-        <h2 className="text-lg font-medium mr-auto">Виджеты</h2>
-      </UIBasePage>
-    </>
+    <UIBasePage>
+      <MainStats />
+      <EventStats />
+    </UIBasePage>
   );
 }

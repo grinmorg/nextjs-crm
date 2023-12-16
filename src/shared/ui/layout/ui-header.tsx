@@ -3,14 +3,30 @@ import { Popover, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 import { UIThemeToggle } from "../ui-theme-toggle";
 import { UIAvatar } from "../ui-avatar";
+import { UIButton } from "../ui-button";
+import { useAppContext } from "@/shared/context";
+import { toast } from "react-toastify";
 
 export function UIHeader() {
+
+  const { isNewsletter, setIsNewsletter } = useAppContext()
+
+  const sendNewsletter = () => {
+    setIsNewsletter(false);
+    toast.success('Сообщения отправлены');
+  }
+
   return (
     <header className="border-b-[3px] border-violet-500 border-opacity-20 bg-white dark:bg-violet-950 py-3 px-6">
       <div className="flex gap-2 ">
         <div className="flex gap-4 items-center">
           <UIThemeToggle />
         </div>
+        {isNewsletter && <div className="ml-auto flex gap-2">
+          <p className="bg-green-500 rounded p-2 text-white">Выберите участников для рассылки</p>
+          <UIButton onClick={sendNewsletter} variant="secondary">Отправить</UIButton>
+        </div>}
+
         <div className="ml-auto flex gap-4 items-center">
           {/* Notify */}
           <button className="w-6 h-6 text-gray-500 dark:text-violet-300 relative">

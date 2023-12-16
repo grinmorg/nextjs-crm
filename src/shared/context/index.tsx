@@ -11,6 +11,8 @@ interface IAppContext {
   supabase: any;
   showIntro: boolean;
   setShowIntro: React.Dispatch<React.SetStateAction<boolean>>;
+  isNewsletter: boolean;
+  setIsNewsletter: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const AppContext = createContext<IAppContext | null>(null);
@@ -18,7 +20,8 @@ const AppContext = createContext<IAppContext | null>(null);
 export function AppWrapper({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<IUser | undefined>(undefined);
   const [loading, setLoading] = useState<boolean>(false);
-  const [showIntro, setShowIntro] = useState<boolean>(false);
+  const [showIntro, setShowIntro] = useState<boolean>(false); // помощник
+  const [isNewsletter, setIsNewsletter] = useState<boolean>(false); // рассылка
 
   useEffect(() => {
     const fetchCurrentUser = async () => {
@@ -46,6 +49,8 @@ export function AppWrapper({ children }: { children: React.ReactNode }) {
     supabase,
     showIntro,
     setShowIntro,
+    isNewsletter, 
+    setIsNewsletter
   };
 
   return (

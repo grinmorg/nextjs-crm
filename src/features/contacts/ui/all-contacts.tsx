@@ -4,12 +4,15 @@ import UIFilter from "@/shared/ui/ui-filter";
 import { UIModal } from "@/shared/ui/ui-modal";
 import { UISelectField, UISelectOption } from "@/shared/ui/ui-select-field";
 import { UITextField } from "@/shared/ui/ui-text-field";
-import { Disclosure, Transition } from "@headlessui/react";
+import { Disclosure, Tab, Transition } from "@headlessui/react";
 import React from "react";
 import { ModalSendEmail } from "./modal-send-email";
 import { ModalShowReviews } from "./modal-show-reviews";
 import { useGetMembers } from "../model/use-get-members";
 import { IMember } from "@/shared/interfaces";
+import { UILink } from "@/shared/ui/ui-link";
+import { UICheckbox } from "@/shared/ui/ui-checkbox";
+import { ModalShowEvents } from "./modal-show-events";
 
 const sort = [
   { name: "По алфавиту ↑" },
@@ -18,29 +21,49 @@ const sort = [
   { name: "По дате добавления ↓" },
 ];
 
-export function AllContect() {
+export function AllContacts() {
+
   const [selected, setSelected] = React.useState<UISelectOption>(sort[0]);
 
-  const { members, getMembers, isPending } = useGetMembers();
-
-  React.useEffect(() => {
-    getMembers();
-  }, [])
-
-
   return (
-    <>
+    <Tab.Group>
+
+      <div className="flex justify-between items-center gap-4 mb-4">
+        <UILink href="#">Создать рассылку</UILink>
+        <UILink href="#">Создать группу</UILink>
+        <UILink href="#">Добавить участника</UILink>
+      </div>
+
       <div className="flex justify-between gap-2 mb-4">
-        <UITextField
-          inputProps={{
-            type: "text",
-            placeholder: "Поиск",
-          }}
-        />
+
+        <Tab.List className="flex gap-2 mb-2">
+          <Tab>
+            {({ selected }) => (
+              <UIButton variant={selected ? "primary" : "secondary"}>Общие</UIButton>
+            )}
+          </Tab>
+          <Tab>
+            {({ selected }) => (
+              <UIButton variant={selected ? "primary" : "secondary"}>Личные</UIButton>
+            )}
+          </Tab>
+          <Tab>
+            {({ selected }) => (
+              <UIButton variant={selected ? "primary" : "secondary"}>Группы</UIButton>
+            )}
+          </Tab>
+        </Tab.List>
 
         <div className="flex items-center gap-4">
+          <UITextField
+            inputProps={{
+              type: "text",
+              placeholder: "Поиск",
+            }}
+          />
+
           <UIFilter>
-            <div className="bg-white dark:bg-violet-950 p-4">Панель</div>
+            <FilterPopover />
           </UIFilter>
 
           <UISelectField
@@ -52,11 +75,32 @@ export function AllContect() {
         </div>
       </div>
 
+      <Tab.Panels>
+        <Tab.Panel><TabPersonal /></Tab.Panel>
+        <Tab.Panel>Content 2</Tab.Panel>
+        <Tab.Panel>Content 3</Tab.Panel>
+      </Tab.Panels>
+    </Tab.Group>
+  )
+}
+
+function TabPersonal() {
+
+  const { members, getMembers, isPending } = useGetMembers();
+
+  React.useEffect(() => {
+    getMembers();
+  }, [])
+
+
+  return (
+    <>
+
       <div className="flex flex-col gap-2 mb-4">
-        {members?.map(item => <Item item={item} />)}
+        {members?.map(item => <Item key={item.id} item={item} />)}
       </div>
 
-      {members && members?.length > 9 && <div className="flex justify-center">
+      {members && members?.length > 4 && <div className="flex justify-center">
         <UIButton className="w-full" variant="secondary">
           Показать ещё
         </UIButton>
@@ -72,17 +116,18 @@ function Item({ item }: { item: IMember }) {
       <div className="bg-white dark:bg-violet-950 rounded-xl">
         <div className="px-6 w-full">
           <div className="flex flex-wrap lg:flex-nowrap items-center sm:justify-between gap-y-2">
+            <input
+              type="checkbox"
+              className="rounded border-gray-300 w-4 h-4 me-4"
+              id="task1"
+            />
             <Disclosure.Button className="flex-1 lg:me-8 flex flex-wrap lg:flex-nowrap items-center sm:justify-between gap-y-2 py-6">
               {/* Base */}
               <div className="flex items-center gap-4">
-                <input
-                  type="checkbox"
-                  className="rounded border-gray-300"
-                  id="task1"
-                />
+
                 <UIAvatar
                   className="w-8 h-8"
-                  src="https://avataaars.io/?avatarStyle=Transparent&topType=LongHairNotTooLong&accessoriesType=Prescription02&hairColor=Blue&facialHairType=Blank&clotheType=ShirtScoopNeck&clotheColor=Gray01&eyeType=WinkWacky&eyebrowType=UpDownNatural&mouthType=Eating&skinColor=Yellow"
+                  src="https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairShortWaved&accessoriesType=Blank&hairColor=BrownDark&facialHairType=BeardMedium&facialHairColor=Brown&clotheType=BlazerShirt&eyeType=Default&eyebrowType=Default&mouthType=Default&skinColor=Light"
                 />
                 <p className="text-sm font-semibold text-gray-700 dark:text-gray-300">
                   {item.name}
@@ -133,7 +178,7 @@ function Item({ item }: { item: IMember }) {
               </UIModal>
 
               {item.tg && <a
-                href={item.tg}
+                href={`https://t.me/${item.tg}`}
                 target="_blank"
                 className="w-5 text-gray-500 hover:text-violet-500 dark:text-violet-300 dark:hover:text-violet-900 transition-all"
               >
@@ -165,21 +210,73 @@ function Item({ item }: { item: IMember }) {
             <div className="p-4 flex items-end justify-between">
               <UITextField
                 className="max-w-xs"
-                label="Адрес"
+                label="Город"
                 inputProps={{
+                  value: item.city,
                   type: "text",
-                  placeholder: "Санкт-Петербург, Главная 9",
+                  placeholder: "Санкт-Петербург",
+                  disabled: true
                 }}
               />
-              <UIModal
-                button={<UIButton variant="primary">Показать отзывы участника</UIButton>}
-              >
-                <ModalShowReviews id={item.id} />
-              </UIModal>
+
+              <div className="flex items-center gap-2">
+                <UIModal
+                  button={<UIButton variant="secondary">Посещенные события</UIButton>}
+                >
+                  <ModalShowEvents id={item.id} />
+                </UIModal>
+
+                <UIModal
+                  button={<UIButton variant="primary">Отзывы участника</UIButton>}
+                >
+                  <ModalShowReviews id={item.id} />
+                </UIModal>
+              </div>
             </div>
           </Disclosure.Panel>
         </Transition>
       </div>
     </Disclosure>
   );
+}
+
+
+function FilterPopover() {
+  return (
+    <div className="bg-white dark:bg-violet-950 p-4 grid grid-cols-12 gap-4">
+      <div className="lg:col-span-4 col-span-6">
+        <UITextField
+          className="mb-4"
+          inputProps={{
+            type: "text",
+            placeholder: "Теги",
+          }}
+        />
+
+        <UICheckbox label="Есть почта" />
+      </div>
+      <div className="lg:col-span-4 col-span-6">
+        <UITextField
+          className="mb-4"
+          inputProps={{
+            type: "text",
+            placeholder: "Статус",
+          }}
+        />
+
+        <UICheckbox label="Есть телеграм" />
+      </div>
+      <div className="lg:col-span-4 col-span-6">
+        <UITextField
+          className="mb-4"
+          inputProps={{
+            type: "text",
+            placeholder: "Город",
+          }}
+        />
+
+        <UICheckbox label="Оставлял отзывы" />
+      </div>
+    </div>
+  )
 }

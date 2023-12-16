@@ -4,24 +4,23 @@ import { Fragment, ReactNode } from "react";
 
 export default function UIFilter({ children }: { children: ReactNode }) {
   return (
-    <Popover className="relative">
+
+    <Popover className="relative rounded bg-white dark:bg-violet-900">
       {({ open }) => (
         <>
           <Popover.Button
             className={`
-                        ${
-                          open
-                            ? "text-violet-500"
-                            : "text-gray-800 dark:text-violet-300"
-                        }
-                        group bg-white border-gray-300 dark:border-gray-700 py-2 px-4 leading-6 flex items-center w-full border rounded text-sm dark:text-white focus:border-violet-500 dark:focus:border-violet-300 focus:ring-0 outline-none dark:bg-violet-900
+                        ${open
+                ? "text-violet-500"
+                : "text-gray-800 dark:text-violet-300"
+              }
+                        group rounded  border-gray-300 dark:border-gray-700 py-2 px-4 leading-6 flex items-center w-full border text-sm dark:text-white focus:border-violet-500 dark:focus:border-violet-300 focus:ring-0 outline-none 
                         `}
           >
             <span>Фильтры</span>
             <AdjustmentsHorizontalIcon
-              className={`${
-                open ? "text-violet-500" : "text-gray-500 dark:text-white"
-              }
+              className={`${open ? "text-violet-500" : "text-gray-500 dark:text-white"
+                }
                   ml-2 h-5 w-5 transition duration-150 ease-in-out group-hover:text-violet-500/80`}
               aria-hidden="true"
             />
@@ -44,5 +43,6 @@ export default function UIFilter({ children }: { children: ReactNode }) {
         </>
       )}
     </Popover>
+
   );
 }

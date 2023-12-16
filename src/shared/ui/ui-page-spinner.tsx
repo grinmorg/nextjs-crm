@@ -19,7 +19,6 @@ export function UIPageSpinner({ className }: { className?: string }) {
         requestAnimationFrame(updateWidth);
       } else {
         setWidth(100); // Ensure it reaches 100% when animation is done
-        console.log("Время кончилось!");
       }
     };
 

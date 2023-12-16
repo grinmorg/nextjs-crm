@@ -81,7 +81,7 @@ export function ModalSendEmail() {
               Отправить
             </UIButton>
             <UIButton className="w-full mt-4" variant="secondary">
-              Сохранить черновик
+              Сохранить шаблон
             </UIButton>
           </div>
         </form>

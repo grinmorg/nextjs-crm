@@ -53,7 +53,7 @@ export function ModalShowReviews({ id }: { id: number }) {
 function ReviewItem({ item }: { item: IReview }) {
 
   return (
-    <div className="comment-item bg-white py-[32px] mb-2.5">
+    <div className="comment-item bg-white mb-2.5">
       <div className="comment-author flex justify-between items-center mb-3">
         <div className="flex space-x-3 items-center">
           <UIAvatar
@@ -85,7 +85,7 @@ function ReviewItem({ item }: { item: IReview }) {
 function StarRating({ stars = '0' }: { stars?: string }) {
   const renderStars = () => {
     const starArray = [];
-    for (let i = 0; i < parseInt(stars); i++) {
+    for (let i = 0; i < 5; i++) {
       starArray.push(
         <span key={i}>
           <svg
@@ -97,7 +97,7 @@ function StarRating({ stars = '0' }: { stars?: string }) {
           >
             <path
               d="M9 0L11.0206 6.21885H17.5595L12.2694 10.0623L14.2901 16.2812L9 12.4377L3.70993 16.2812L5.73056 10.0623L0.440492 6.21885H6.97937L9 0Z"
-              fill="#FFA800"
+              fill={parseInt(stars) < i + 1 ? "#dedede" : "#FFA800"}
             />
           </svg>
         </span>

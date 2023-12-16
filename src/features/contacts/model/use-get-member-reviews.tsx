@@ -15,6 +15,10 @@ export function useGetMemberReviews() {
         let { data, error } = await supabase
             .from('reviews')
             .select('*')
+            .range(
+                0,
+                3,
+            )
             .eq('member_id', id)
 
         if (error) {

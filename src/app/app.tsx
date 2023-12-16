@@ -2,6 +2,7 @@ import type { AppProps } from "next/app";
 import { AppProvider } from "./app-provider";
 import { Jura } from "next/font/google";
 import { ToastContainer } from "react-toastify";
+import Script from "next/script";
 
 const font = Jura({ subsets: ["latin"] });
 export function App({ Component, pageProps }: AppProps) {

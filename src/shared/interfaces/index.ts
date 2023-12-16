@@ -46,4 +46,5 @@ export interface IMember {
   tg?: string;
   job?: string;
   level?: string;
+  city?: string;
 }

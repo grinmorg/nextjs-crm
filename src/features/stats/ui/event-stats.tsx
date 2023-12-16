@@ -1,4 +1,16 @@
 import { UIAvatar } from "@/shared/ui/ui-avatar";
+import { Chart as ChartJS, ArcElement, Tooltip, Legend, CategoryScale, LinearScale, PointElement, LineElement, Title } from "chart.js";
+import { Doughnut, Line } from "react-chartjs-2";
+
+ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend);
+
+type ChartType = "d" | "l" | "w";
 
 export function EventStats() {
   return (
@@ -29,8 +41,8 @@ export function EventStats() {
         </div>
         {/* end title */}
         <div className="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-6 my-3">
-          <EventCard />
-          <EventCard />
+          <EventCard type="d" />
+          <EventCard type="l" />
           <EventCard />
         </div>
         {/* end grid */}
@@ -39,7 +51,7 @@ export function EventStats() {
   );
 }
 
-function EventCard() {
+function EventCard({ type = "d" }: { type?: ChartType }) {
   return (
     <div className="bg-white rounded">
       <div className="p-6">
@@ -97,7 +109,66 @@ function EventCard() {
           />
         </div>
         {/* assignment end */}
+
+        <hr className="my-4" />
+
+        <ChartInfo type={type} />
       </div>
     </div>
   );
+}
+
+
+function ChartInfo({ type = "d" }: { type?: ChartType }) {
+  const labels = ['20', '40', '60', '80', '100'];
+  const datapoints = [10, 28, 13, 42, 57];
+
+  return (
+    <div>
+      {type == 'd' &&
+        <Doughnut data={{
+          labels: ['Frontend', 'Backend', 'Fullstack'],
+          datasets: [
+            {
+              label: 'Количество',
+              data: [300, 50, 100],
+              backgroundColor: [
+                'rgb(139, 92, 245)',
+                'rgb(6, 182, 212)',
+                'rgb(34, 197, 94)'
+              ],
+              hoverOffset: 4
+            }
+          ],
+        }} />
+      }
+
+      {type == 'l' &&
+        <Line data={{
+          labels,
+          datasets: [
+            {
+              label: 'Оценка мероприятия',
+              data: datapoints,
+              borderColor: 'rgb(139, 92, 245)',
+              fill: false,
+              cubicInterpolationMode: 'monotone',
+              tension: 0.4
+            }
+          ]
+        }}
+          options={{
+            scales: {
+              x: {
+                type: 'category', // Use 'category' scale for x-axis
+                labels: labels,
+              },
+              y: {
+                // Other y-axis configurations if needed
+              }
+            }
+          }} />
+      }
+    </div>
+  )
 }
