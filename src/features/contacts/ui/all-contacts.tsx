@@ -100,11 +100,11 @@ function TabPersonal() {
         {members?.map(item => <Item key={item.id} item={item} />)}
       </div>
 
-      {members && members?.length > 4 && <div className="flex justify-center">
+      {/* {members && members?.length > 4 && <div className="flex justify-center">
         <UIButton className="w-full" variant="secondary">
           Показать ещё
         </UIButton>
-      </div>}
+      </div>} */}
 
     </>
   );
