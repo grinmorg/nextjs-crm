@@ -46,7 +46,7 @@ export function OAuthForm() {
           </span>
         </button>
         <button
-          onClick={() => OAuthHandler("gitlab")}
+          onClick={() => toast.error('Скоро заработает')}
           className="block border text-gray-500 dark:text-violet-300 font-medium leading-6 text-center align-middle select-none py-2 px-4 text-sm rounded-md transition-all hover:shadow-md"
         >
           <span className="flex items-center justify-center">

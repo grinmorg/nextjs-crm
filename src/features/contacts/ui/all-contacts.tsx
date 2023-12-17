@@ -13,6 +13,8 @@ import { IMember } from "@/shared/interfaces";
 import { UILink } from "@/shared/ui/ui-link";
 import { UICheckbox } from "@/shared/ui/ui-checkbox";
 import { ModalShowEvents } from "./modal-show-events";
+import { getFormattingDate } from "@/shared/lib/utils";
+import { toast } from "react-toastify";
 
 const sort = [
   { name: "По алфавиту ↑" },
@@ -121,6 +123,17 @@ function Item({ item }: { item: IMember }) {
               className="rounded border-gray-300 w-4 h-4 me-4"
               id="task1"
             />
+            <button onClick={() => toast.error('Скоро заработает')} className="w-4 h-4 text-gray-500 dark:text-violet-300 me-4">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path
+                  fill="none"
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeWidth="1.5"
+                  d="m14.36 4.079l.927-.927a3.932 3.932 0 0 1 5.561 5.561l-.927.927m-5.56-5.561s.115 1.97 1.853 3.707C17.952 9.524 19.92 9.64 19.92 9.64m-5.56-5.561L12 6.439m7.921 3.2l-5.26 5.262L11.56 18l-.16.161c-.578.577-.867.866-1.185 1.114a6.554 6.554 0 0 1-1.211.749c-.364.173-.751.302-1.526.56l-3.281 1.094m0 0l-.802.268a1.06 1.06 0 0 1-1.342-1.342l.268-.802m1.876 1.876l-1.876-1.876m0 0l1.094-3.281c.258-.775.387-1.162.56-1.526c.205-.43.456-.836.749-1.211c.248-.318.537-.607 1.114-1.184L8.5 9.939"
+                ></path>
+              </svg>
+            </button>
             <Disclosure.Button className="flex-1 lg:me-8 flex flex-wrap lg:flex-nowrap items-center sm:justify-between gap-y-2 py-6">
               {/* Base */}
               <div className="flex items-center gap-4">
@@ -134,17 +147,18 @@ function Item({ item }: { item: IMember }) {
                 </p>
               </div>
 
-              {/* Tags */}
-              <div>
-                <span className="inline-flex items-center gap-1.5 py-0.5 px-2 rounded-full text-sm font-semibold bg-cyan-500/10 text-cyan-500">
+              <div className="flex gap-2">
+                {/* Tags */}
+                <span className="inline-flex items-center gap-1.5 py-0.5 px-2 rounded-md text-sm font-semibold bg-cyan-500/10 text-cyan-500">
                   {item.job}
+                </span>
+                {/* Desc */}
+                <span className="inline-flex items-center gap-1.5 py-0.5 px-2 rounded-md text-sm font-semibold bg-teal-500/10 text-teal-500">
+                  Middle
                 </span>
               </div>
 
-              {/* Desc */}
-              <span className="inline-flex items-center gap-1.5 py-0.5 px-2 rounded-md text-xs font-semibold bg-teal-500/10 text-teal-500">
-                Middle
-              </span>
+
             </Disclosure.Button>
             {/* Socials */}
             <div className="flex items-center gap-4">
@@ -218,6 +232,12 @@ function Item({ item }: { item: IMember }) {
                   disabled: true
                 }}
               />
+
+              <UICheckbox disabled checked={true} label="Не против получать информацию о новых мероприятиях и вакансиях" />
+
+
+              <p>Дата добавления: <span className="text-gray-500 taxt-xs">{getFormattingDate(item.created_at)}</span></p>
+
 
               <div className="flex items-center gap-2">
                 <UIModal
