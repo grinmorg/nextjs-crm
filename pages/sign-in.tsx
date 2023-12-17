@@ -33,7 +33,7 @@ export default function SignIn() {
         <title>{getPageTitle("Вход")}</title>
       </Head>
       <main className="py-6 min-h-screen bg-violet-200 dark:bg-violet-900">
-        <div className="container px-2 md:px-0">
+        <div className="container mx-auto px-2 md:px-0">
           <UIFormPageSplitLayout
             title="Вход в систему"
             desc="Введите вашу почту и пароль"

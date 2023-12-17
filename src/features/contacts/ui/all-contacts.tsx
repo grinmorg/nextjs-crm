@@ -143,7 +143,7 @@ function Item({ item }: { item: IMember }) {
 
               {/* Desc */}
               <span className="inline-flex items-center gap-1.5 py-0.5 px-2 rounded-md text-xs font-semibold bg-teal-500/10 text-teal-500">
-                {item.level}
+                Middle
               </span>
             </Disclosure.Button>
             {/* Socials */}

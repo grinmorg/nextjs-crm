@@ -34,7 +34,7 @@ export default function SignUp() {
       </Head>
 
       <main className="py-6 min-h-screen bg-violet-200 dark:bg-violet-900">
-        <div className="container px-2 md:px-0">
+        <div className="container mx-auto px-2 md:px-0">
           <UIFormPageSplitLayout
             title="Создайте свой профиль"
             desc="Создайте свой профиль, это займет меньше минуты"
