@@ -10,6 +10,8 @@ import { UIButton } from "@/shared/ui/ui-button";
 import { UILinkButton } from "@/shared/ui/ui-link-button";
 import { ROUTES } from "@/shared/constants/routes";
 import { useAppContext } from "@/shared/context";
+import { UIModal } from "@/shared/ui/ui-modal";
+import { ModalCreateEvent } from "@/features/events/ui/modal-create-event";
 
 export default function Page() {
 
@@ -47,12 +49,17 @@ export default function Page() {
           />
         </div>
 
-        <UIButton
-          className="w-full mt-4"
-          variant="secondary"
-        >
-          Добавить событие
-        </UIButton>
+        <UIModal
+          button={
+            <UIButton
+              className="w-full mt-4"
+              variant="secondary"
+            >
+              Добавить событие
+            </UIButton>
+          }>
+            <ModalCreateEvent />
+        </UIModal>
       </div>
 
       <Transition appear show={isOpen} as={React.Fragment}>

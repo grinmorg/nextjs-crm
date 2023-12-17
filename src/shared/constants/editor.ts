@@ -76,3 +76,7 @@ export const EMAIL_DEFAULT_CONTENT = {
     },
   ],
 };
+
+export const EVENT_DEFAULT_CONTENT = { "type": "doc", "content": [{ "type": "paragraph", "content": [{ "type": "text", "text": "Старт:" }] }, { "type": "paragraph", "content": [{ "type": "text", "marks": [{ "type": "textStyle", "attrs": { "color": "rgb(107 114 128 / var(--tw-text-opacity))" } }], "text": "15.12.2023 14:00" }] }, { "type": "paragraph", "content": [{ "type": "text", "text": "Завершение:" }] }, { "type": "paragraph", "content": [{ "type": "text", "marks": [{ "type": "textStyle", "attrs": { "color": "rgb(107 114 128 / var(--tw-text-opacity))" } }], "text": "17.12.2023 22:00" }] }, { "type": "paragraph", "content": [{ "type": "text", "text": "Описание:" }] }] };
+
+
