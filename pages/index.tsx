@@ -5,6 +5,7 @@ import { getPageTitle } from "@/shared/constants/config";
 import Link from "next/link";
 
 export default function HomePage() {
+
   return (
     <>
       <Head>
