@@ -1,7 +1,10 @@
 # CRAB CRM для хакатона DevRel Hack 2.0
 
 Тут ссылка на [наш проект](https://sidim-codim.netlify.app/) 
-Стек: Next, TypeScript, Supabase, Tailwind, HeadlessUI
+
+## Стек
+Фронт: Next, TypeScript, Tailwind, HeadlessUI
+Бэк: Supabase
 
 ## Getting Started
 
