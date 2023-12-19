@@ -3,8 +3,8 @@
 Тут ссылка на [наш проект](https://sidim-codim.netlify.app/) 
 
 ## Стек
-Фронт: Next, TypeScript, Tailwind, HeadlessUI
-Бэк: Supabase
+- Фронт: Next, TypeScript, Tailwind, HeadlessUI
+- Бэк: Supabase
 
 ## Getting Started
 
